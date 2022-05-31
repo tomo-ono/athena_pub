@@ -80,6 +80,8 @@ void Hydro::CalculateFluxes(AthenaArray<Real> &w, FaceField &b,
         pmb->precon->DonorCellX1(k, j, is-1, ie+1, w, bcc, wl_, wr_);
       } else if (order == 2) {
         pmb->precon->PiecewiseLinearX1(k, j, is-1, ie+1, w, bcc, wl_, wr_);
+      } else if (order == 3 && pmb->precon->weno_flag) {
+        pmb->precon->Weno3X1(k, j, is-1, ie+1, w, bcc, wl_, wr_);
       } else {
         pmb->precon->PiecewiseParabolicX1(k, j, is-1, ie+1, w, bcc, wl_, wr_);
       }
@@ -178,6 +180,8 @@ void Hydro::CalculateFluxes(AthenaArray<Real> &w, FaceField &b,
         pmb->precon->DonorCellX2(k, js-1, il, iu, w, bcc, wl_, wr_);
       } else if (order == 2) {
         pmb->precon->PiecewiseLinearX2(k, js-1, il, iu, w, bcc, wl_, wr_);
+      } else if (order == 3 && pmb->precon->weno_flag) {
+        pmb->precon->Weno3X2(k, js-1, il, iu, w, bcc, wl_, wr_);
       } else {
         pmb->precon->PiecewiseParabolicX2(k, js-1, il, iu, w, bcc, wl_, wr_);
       }
@@ -187,6 +191,8 @@ void Hydro::CalculateFluxes(AthenaArray<Real> &w, FaceField &b,
           pmb->precon->DonorCellX2(k, j, il, iu, w, bcc, wlb_, wr_);
         } else if (order == 2) {
           pmb->precon->PiecewiseLinearX2(k, j, il, iu, w, bcc, wlb_, wr_);
+        } else if (order == 3 && pmb->precon->weno_flag) {
+          pmb->precon->Weno3X2(k, j, il, iu, w, bcc, wlb_, wr_);
         } else {
           pmb->precon->PiecewiseParabolicX2(k, j, il, iu, w, bcc, wlb_, wr_);
         }
@@ -284,6 +290,8 @@ void Hydro::CalculateFluxes(AthenaArray<Real> &w, FaceField &b,
         pmb->precon->DonorCellX3(ks-1, j, il, iu, w, bcc, wl_, wr_);
       } else if (order == 2) {
         pmb->precon->PiecewiseLinearX3(ks-1, j, il, iu, w, bcc, wl_, wr_);
+      } else if (order == 3 && pmb->precon->weno_flag) {
+        pmb->precon->Weno3X3(ks-1, j, il, iu, w, bcc, wl_, wr_);
       } else {
         pmb->precon->PiecewiseParabolicX3(ks-1, j, il, iu, w, bcc, wl_, wr_);
       }
@@ -293,6 +301,8 @@ void Hydro::CalculateFluxes(AthenaArray<Real> &w, FaceField &b,
           pmb->precon->DonorCellX3(k, j, il, iu, w, bcc, wlb_, wr_);
         } else if (order == 2) {
           pmb->precon->PiecewiseLinearX3(k, j, il, iu, w, bcc, wlb_, wr_);
+        } else if (order == 3 && pmb->precon->weno_flag) {
+          pmb->precon->Weno3X3(k, j, il, iu, w, bcc, wlb_, wr_);
         } else {
           pmb->precon->PiecewiseParabolicX3(k, j, il, iu, w, bcc, wlb_, wr_);
         }

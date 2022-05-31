@@ -244,7 +244,7 @@ Mesh::Mesh(ParameterInput *pin, int mesh_test) :
     std::string input_recon = pin->GetOrAddString("time", "xorder", "2");
     if ((input_recon == "2") || (input_recon == "2c")) {
       xorder = 2;
-    } else if ((input_recon == "3") || (input_recon == "3c")) {
+    } else if ((input_recon == "3") || (input_recon == "3c") || (input_recon == "w3")) {
       xorder = 3;
     } else if ((input_recon == "4") || (input_recon == "4c")) {
       xorder = 4;
